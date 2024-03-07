@@ -29,6 +29,7 @@ function organizeData() {
   var scoreIndex = 4;
   var commentIndex = 6;
   var versionIndex = 7;
+  var drspsIndex = 8;
   Logger.log(timestampIndex);
   Logger.log(nameIndex);
   Logger.log(discordIndex);
@@ -45,12 +46,14 @@ for (var i = 1; i < dataValues.length; i++) {
     var version = rowData[versionIndex];
     if (version === "Classical") {
       // Exclude columns for screenshot and type of Tetris
-      classicalData.push([rowData[timestampIndex], rowData[nameIndex], rowData[discordIndex], rowData[ageIndex], rowData[scoreIndex], rowData[commentIndex]]);
+      classicalData.push([rowData[timestampIndex], rowData[nameIndex], rowData[discordIndex], rowData[ageIndex], rowData[scoreIndex], rowData[commentIndex],rowData[drspsIndex]]);
     } else if (version === "Other") {
       // Exclude columns for screenshot and type of Tetris
-      otherData.push([rowData[timestampIndex], rowData[nameIndex], rowData[discordIndex], rowData[ageIndex], rowData[scoreIndex], rowData[commentIndex]]);
+      otherData.push([rowData[timestampIndex], rowData[nameIndex], rowData[discordIndex], rowData[ageIndex], rowData[scoreIndex], rowData[commentIndex],rowData[drspsIndex]]);
     }
   }
+
+  Logger.log(rowData[1][drspsIndex]);
 
 //Customize column's width for classical Sheet
   classicalSheet.setColumnWidth(1, 175);
@@ -59,6 +62,7 @@ for (var i = 1; i < dataValues.length; i++) {
   classicalSheet.setColumnWidth(4, 75);
   classicalSheet.setColumnWidth(5, 100);
   classicalSheet.setColumnWidth(6, 500);
+  classicalSheet.setColumnWidth(7, 50);
 
 //Customize height of the first row for classical sheet
   classicalSheet.setRowHeight(1, 50);
@@ -70,6 +74,7 @@ for (var i = 1; i < dataValues.length; i++) {
   otherSheet.setColumnWidth(4, 75);
   otherSheet.setColumnWidth(5, 100);
   otherSheet.setColumnWidth(6, 500);
+  otherSheet.setColumnWidth(7, 50);
 //Customize height of the first row for classical sheet
   otherSheet.setRowHeight(1, 50);
   
@@ -79,7 +84,7 @@ for (var i = 1; i < dataValues.length; i++) {
   var headingFontFamily = "Exo"; // Font family
   
   //List of Headings
-  var classicalHeadings = ["Timestamp", "Name", "Discord Username", "Age", "Score", "Short Comment"];
+  var classicalHeadings = ["Timestamp", "Name", "Discord Username", "Age", "Score", "Short Comment","DRSPS"];
   //Customize font, font color and background for the headings
   var headingRange = classicalSheet.getRange(1, 1, 1, classicalHeadings.length);
   headingRange.setFontFamily(headingFontFamily).setFontColor(headingFontColor).setBackground(headingBackgroundColor);
